@@ -24,9 +24,12 @@ contract NUTZGovernance is Governor, GovernorCountingSimple, GovernorVotes {
         return 1000e18; // 1000 tokens
     }
 
-    function quorum(uint256) public pure override returns (uint256) {
-        // Implement the quorum calculation here
-        return 0; // Placeholder, replace with actual implementation
+    // Implementation of the quorum calculation
+    function quorum(uint256 blockNumber) public view override returns (uint256) {
+        // Quorum is calculated as a percentage of the total supply
+        // For example, if you want 10% quorum, and total supply is 1 million tokens
+        // quorum = 1,000,000 * 10 / 100 = 100,000
+        return token.totalSupply() * 10 / 100;
     }
 
     // The rest of the contract...
